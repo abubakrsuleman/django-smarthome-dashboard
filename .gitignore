@@ -15,3 +15,5 @@ ENV/
 .idea/
 .vscode/
 
+#superuser login details
+superuser-details.txt
