@@ -1,0 +1,144 @@
+{% load static %}
+{% include 'base.html' %}
+{% block content %}
+
+<div class="container-fluid py-2 border-bottom">
+  <div class="row align-items-center">
+    {# <div class="col gy-3 d-flex gap-2 flex-wrap"> #}
+     <div class="col">
+     <span class="badge rounded-pill text-bg-dark"><i class="bi bi-person-circle me-1"></i> Logged in: {{ request.user.username }}</span>
+      <span class="badge rounded-pill text-bg-dark"><i class="bi bi-clock-history me-1"></i> Last login: {{ request.user.last_login}}</span>
+    </div>
+    <div class="col-auto text-end">
+      <div class="h4 mono m-0" id="clock"></div>
+      <div class="small text-muted" id="dateLine"></div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid my-3">
+  <!-- Meters -->
+ <div class="row g-3">
+  <div class="col-lg-6">
+    <div class="card p-3 h-100">
+      <h6 class="text-uppercase small mb-2">Meters</h6>
+      <div class="row g-3">
+
+        <!-- Electricity -->
+        <div class="col-md-4">
+          <div class="card p-3">
+            <div class="d-flex justify-content-between">
+              <span>Electricity</span><i class="bi bi-lightning"></i>
+            </div>
+            <div class="fw-bold fs-4 mt-2" id="meterElectric">16.50</div>
+          </div>
+        </div>
+
+        <!-- Gas -->
+        <div class="col-md-4">
+          <div class="card p-3">
+            <div class="d-flex justify-content-between">
+              <span>Gas</span><i class="bi bi-fire"></i>
+            </div>
+            <div class="fw-bold fs-4 mt-2" id="meterGas">30.00</div>
+          </div>
+        </div>
+
+        <!-- Water -->
+        <div class="col-md-4">
+          <div class="card p-3">
+            <div class="d-flex justify-content-between">
+              <span>Water</span><i class="bi bi-droplet"></i>
+            </div>
+            <div class="fw-bold fs-4 mt-2" id="meterWater">12.75</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+    <!-- Storage -->
+    <div class="col-lg-6">
+      <div class="card p-3 h-100">
+        <h6 class="text-uppercase small mb-2">Storage</h6>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <div class="card p-3">
+              <div class="d-flex justify-content-between"><span>Disk 1</span><small>1.5TB</small></div>
+              <div class="progress my-2"><div class="progress-bar" id="disk1Bar" style="width:60%"></div></div>
+              <small><span id="disk1Pct">60%</span> full</small>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card p-3">
+              <div class="d-flex justify-content-between"><span>Disk 2</span><small>2TB</small></div>
+              <div class="progress my-2"><div class="progress-bar" id="disk2Bar" style="width:10%"></div></div>
+              <small><span id="disk2Pct">10%</span> full</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CCTV -->
+  <div class="card p-3 my-3">
+    <h6 class="text-uppercase small mb-2">CCTV</h6>
+    <div class="row g-3">
+      <div class="col-md-6 col-xl-3"><div class="bg-dark text-center p-5 rounded">Camera 1</div></div>
+      <div class="col-md-6 col-xl-3"><div class="bg-dark text-center p-5 rounded">Camera 2</div></div>
+      <div class="col-md-6 col-xl-3"><div class="bg-dark text-center p-5 rounded">Camera 3</div></div>
+      <div class="col-md-6 col-xl-3"><div class="bg-dark text-center p-5 rounded">Camera 4</div></div>
+    </div>
+  </div>
+
+  <!-- Emails + Projects -->
+  <div class="row g-3">
+    <div class="col-lg-6">
+      <div class="card p-3 h-100">
+        <h6 class="text-uppercase small mb-2">Emails</h6>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item d-flex justify-content-between">Outlook <span class="badge bg-secondary">9</span></li>
+          <li class="list-group-item d-flex justify-content-between">Gmail <span class="badge bg-secondary">3</span></li>
+          <li class="list-group-item d-flex justify-content-between fw-bold">Total <span class="badge bg-primary">12</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="card p-3 h-100">
+        <h6 class="text-uppercase small mb-2">Projects</h6>
+        <table class="table table-sm table-dark align-middle">
+          <thead><tr><th>#</th><th>Project</th><th>Status</th><th>Due</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Dark Web Site</td><td><span class="badge bg-success">Done</span></td><td>-</td></tr>
+            <tr><td>2</td><td>Ticketing System</td><td><span class="badge bg-warning">Delayed</span></td><td>1/9/2025</td></tr>
+            <tr><td>3</td><td>Inventory System</td><td><span class="badge bg-secondary">Postponed</span></td><td>-</td></tr>
+            <tr><td>4</td><td>Word/Site App</td><td><span class="badge bg-danger">Cancelled</span></td><td>-</td></tr>
+            <tr><td>5</td><td>BF3 Server</td><td><span class="badge bg-warning">Delayed</span></td><td>-</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Server Stats -->
+  <div class="row g-3 my-3">
+    <div class="col-md-4"><div class="card p-3"><h6>CPU</h6><div id="cpu" class="fs-4">—</div></div></div>
+    <div class="col-md-4"><div class="card p-3"><h6>Memory</h6><div id="mem" class="fs-4">—</div><small id="memBytes">—</small></div></div>
+    <div class="col-md-4"><div class="card p-3"><h6>Disk</h6><div id="disk" class="fs-4">—</div><small id="diskBytes">—</small></div></div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="d-flex justify-content-between mt-3">
+    <div>
+      <span class="badge text-bg-dark">django</span>
+      <span class="badge text-bg-dark">debian</span>
+    </div>
+    <div>
+      <button class="btn btn-sm btn-outline-light">Admin</button>
+    </div>
+  </footer>
+</div>
+<script src="{% static 'js/get_time.js' %}" defer></script>
+{% endblock content %}

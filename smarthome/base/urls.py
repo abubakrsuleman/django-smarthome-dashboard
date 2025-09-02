@@ -18,4 +18,5 @@ from django.urls import path,include
 from base import views as base_views
 urlpatterns = [
     path('',base_views.home,name="Home"),
+    path('dashboard/',base_views.dashboard,name="Dashboard"),
 ]
