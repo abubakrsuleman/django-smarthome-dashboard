@@ -58,29 +58,68 @@
     </div>
   </div>
 
-    <!-- Storage -->
-    <div class="col-lg-6">
-      <div class="card p-3 h-100">
-        <h6 class="text-uppercase small mb-2">Storage</h6>
-        <div class="row g-3">
-          <div class="col-md-6">
-            <div class="card p-3">
-              <div class="d-flex justify-content-between"><span>Disk 1</span><small>1.5TB</small></div>
-              <div class="progress my-2"><div class="progress-bar" id="disk1Bar" style="width:60%"></div></div>
-              <small><span id="disk1Pct">60%</span> full</small>
-            </div>
+  <!-- Server Stats -->
+  <div class="col-lg-6">
+    <div class="card p-3 h-100">
+      <h6 class="text-uppercase small mb-2">Server Stats</h6>
+      <div class="row g-3">
+        <div class="col-md-4">
+          <div class="card p-3">
+            <h6>CPU</h6>
+            <div id="cpu" class="fs-4">—</div>
           </div>
-          <div class="col-md-6">
-            <div class="card p-3">
-              <div class="d-flex justify-content-between"><span>Disk 2</span><small>2TB</small></div>
-              <div class="progress my-2"><div class="progress-bar" id="disk2Bar" style="width:10%"></div></div>
-              <small><span id="disk2Pct">10%</span> full</small>
-            </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card p-3">
+            <h6>Memory</h6>
+            <div id="mem" class="fs-4">—</div>
+            <small id="memBytes">—</small>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card p-3">
+            <h6>Disk</h6>
+            <div id="disk" class="fs-4">—</div>
+            <small id="diskBytes">—</small>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+<!-- Storage -->
+<div class="col-lg-12">
+  <div class="card p-3 h-100">
+    <h6 class="text-uppercase small mb-2">Storage Devices</h6>
+    <div class="row g-3">
+
+      {% for s in storages %}
+      <div class="col-md-4"> <!-- three per row -->
+        <div class="card p-3 h-100">
+          <div class="d-flex justify-content-between">
+            <span>Device {{ s.name }}</span>
+            <small>{{ s.size|default:"—" }}</small>
+          </div>
+
+          {% if s.mountpoint %}
+            <small>Mounted: {{ s.mountpoint }}</small>
+          {% else %}
+            <small class="text-muted">Not mounted</small>
+          {% endif %}
+
+          <div class="progress my-2">
+            <div class="progress-bar" style="width: {{ s.percent_used }}%"></div>
+          </div>
+          <small><span>{{ s.percent_used }}%</span> full • {{ s.fstype|default:"—" }}</small>
+        </div>
+      </div>
+      {% empty %}
+        <p class="text-muted">No storage devices found.</p>
+      {% endfor %}
+
+    </div>
+  </div>
+</div>
 
   <!-- CCTV -->
   <div class="card p-3 my-3">
@@ -93,6 +132,8 @@
     </div>
   </div>
 
+
+{% comment %}
   <!-- Emails + Projects -->
   <div class="row g-3">
     <div class="col-lg-6">
@@ -121,35 +162,7 @@
       </div>
     </div>
   </div>
-
-<!-- Server Stats -->
-<div class="row g-3 my-3">
-  <div class="col-md-4">
-    <div class="card p-3">
-      <h6>CPU</h6>
-      <div id="cpu" class="fs-4">—</div>
-    </div>
-  </div>
-  <div class="col-md-4">
-    <div class="card p-3">
-      <h6>Memory</h6>
-      <div id="mem" class="fs-4">—</div>
-      <small id="memBytes">—</small>
-    </div>
-  </div>
-  <div class="col-md-4">
-    <div class="card p-3">
-      <h6>Disk</h6>
-      <div id="disk" class="fs-4">—</div>
-      <small id="diskBytes">—</small>
-    </div>
-  </div>
-</div>
-
-
-
-
-
+{% endcomment %}
   <!-- Footer -->
   <footer class="d-flex justify-content-between mt-1">
     <div class="col-2">
