@@ -122,23 +122,45 @@
     </div>
   </div>
 
-  <!-- Server Stats -->
-  <div class="row g-3 my-3">
-    <div class="col-md-4"><div class="card p-3"><h6>CPU</h6><div id="cpu" class="fs-4">—</div></div></div>
-    <div class="col-md-4"><div class="card p-3"><h6>Memory</h6><div id="mem" class="fs-4">—</div><small id="memBytes">—</small></div></div>
-    <div class="col-md-4"><div class="card p-3"><h6>Disk</h6><div id="disk" class="fs-4">—</div><small id="diskBytes">—</small></div></div>
+<!-- Server Stats -->
+<div class="row g-3 my-3">
+  <div class="col-md-4">
+    <div class="card p-3">
+      <h6>CPU</h6>
+      <div id="cpu" class="fs-4">—</div>
+    </div>
   </div>
+  <div class="col-md-4">
+    <div class="card p-3">
+      <h6>Memory</h6>
+      <div id="mem" class="fs-4">—</div>
+      <small id="memBytes">—</small>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card p-3">
+      <h6>Disk</h6>
+      <div id="disk" class="fs-4">—</div>
+      <small id="diskBytes">—</small>
+    </div>
+  </div>
+</div>
+
+
+
+
 
   <!-- Footer -->
-  <footer class="d-flex justify-content-between mt-3">
-    <div>
-      <span class="badge text-bg-dark">django</span>
-      <span class="badge text-bg-dark">debian</span>
+  <footer class="d-flex justify-content-between mt-1">
+    <div class="col-2">
+      <span class="badge text-bg-dark"><img src="{% static 'logos/powered-by-debian.png' %}" alt="Debian Logo" class="img-fluid"></span>
+      <span class="badge text-bg-dark"><img src="{% static 'logos/django-logo.png' %}" alt="Django Logo" class="img-fluid" width="100" height="100"></span>
     </div>
     <div>
-      <button class="btn btn-sm btn-outline-light">Admin</button>
+      <button class="btn btn-sm btn-outline-light mt-3">Admin</button>
     </div>
   </footer>
 </div>
 <script src="{% static 'js/get_time.js' %}" defer></script>
+<script src="{% static 'js/system_utils.js' %}"></script>
 {% endblock content %}
